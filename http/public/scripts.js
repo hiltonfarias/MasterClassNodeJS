@@ -8,6 +8,16 @@ async function load() {
   res.urls.map(({ name, url }) => addElement({ name, url }))
 }
 
+async function addData({ name, url }) {
+  const res = await fetch(`http://localhost:3000?name=${name}&url=${url}`)
+    .then(data => data)
+}
+
+async function delData({ name, url }) {
+  const res = await fetch(`http://localhost:3000?name=${name}&url=${url}&del=1`)
+    .then(data => data)
+}
+
 load()
 
 function addElement({ name, url }) {
@@ -30,6 +40,8 @@ function addElement({ name, url }) {
 function removeElement(el) {
   if (confirm('Tem certeza que deseja deletar?'))
     el.parentNode.remove()
+
+  delData({ name, url })
 }
 
 form.addEventListener("submit", (event) => {
@@ -49,6 +61,7 @@ form.addEventListener("submit", (event) => {
     return alert("Digite a url da maneira correta")
 
   addElement({ name, url })
+  addData({ name, url })
 
   input.value = ""
 })
