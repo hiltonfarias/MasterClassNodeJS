@@ -8,6 +8,8 @@ async function load() {
   res.urls.map(({ name, url }) => addElement({ name, url }))
 }
 
+load()
+
 async function addData({ name, url }) {
   const res = await fetch(`http://localhost:3000?name=${name}&url=${url}`)
     .then(data => data)
@@ -17,8 +19,6 @@ async function delData({ name, url }) {
   const res = await fetch(`http://localhost:3000?name=${name}&url=${url}&del=1`)
     .then(data => data)
 }
-
-load()
 
 function addElement({ name, url }) {
   const li = document.createElement('li')
@@ -30,14 +30,14 @@ function addElement({ name, url }) {
   a.target = "_blank"
 
   trash.innerHTML = "x"
-  trash.onclick = () => removeElement(trash)
+  trash.onclick = () => removeElement(trash, name, url)
 
   li.append(a)
   li.append(trash)
   ul.append(li)
 }
 
-function removeElement(el) {
+function removeElement(el, name, url) {
   if (confirm('Tem certeza que deseja deletar?'))
     el.parentNode.remove()
 

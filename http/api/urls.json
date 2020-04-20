@@ -7,6 +7,18 @@
     {
       "name": "Google",
       "url": "http://google.com"
+    },
+    {
+      "name": "YouTube",
+      "url": "http://youtube.com"
+    },
+    {
+      "name": "Nodejs",
+      "url": "http://nodejs.org"
+    },
+    {
+      "name": "W3schools",
+      "url": "https://www.w3schools.com"
     }
   ]
 }
